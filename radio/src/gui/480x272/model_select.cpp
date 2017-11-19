@@ -219,9 +219,8 @@ bool menuModelWizard(event_t event)
 }
 #endif
 
-void onModelSelectMenu(const char * result)
+void selectModel()
 {
-  if (result == STR_SELECT_MODEL) {
     // we store the latest changes if any
     storageFlushCurrentModel();
     storageCheck(true);
@@ -231,6 +230,12 @@ void onModelSelectMenu(const char * result)
     storageCheck(true);
     chainMenu(menuMainView);
     postModelLoad(true);
+}
+
+void onModelSelectMenu(const char * result)
+{
+  if (result == STR_SELECT_MODEL) {
+      selectModel();
   }
   else if (result == STR_DELETE_MODEL) {
     POPUP_CONFIRMATION(STR_DELETEMODEL);
@@ -352,6 +357,10 @@ bool menuModelSelect(event_t event)
     case EVT_KEY_BREAK(KEY_ENTER):
       if (selectMode == MODE_MOVE_MODEL)
         selectMode = MODE_SELECT_MODEL;
+      else if (selectMode == MODE_SELECT_MODEL &&
+               currentModel && currentModel != modelslist.currentModel) {
+          selectModel();
+      }
       break;
 
     case EVT_KEY_FIRST(KEY_EXIT):
