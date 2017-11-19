@@ -253,11 +253,15 @@ void menuModelSelect(event_t event)
         }
 #endif
       }
-      else if (eeModelExists(sub)) {
-        s_copyMode = (s_copyMode == COPY_MODE ? MOVE_MODE : COPY_MODE);
-        s_copyTgtOfs = 0;
-        s_copySrcRow = -1;
+      if (g_eeGeneral.currModel != sub && eeModelExists(sub)) {
+          selectModel(sub);
       }
+      // DO NOT activate copy/move mode from main view, only from pop-up
+      // else if (eeModelExists(sub)) {
+      //   s_copyMode = (s_copyMode == COPY_MODE ? MOVE_MODE : COPY_MODE);
+      //   s_copyTgtOfs = 0;
+      //   s_copySrcRow = -1;
+      // }
       break;
 
 #if defined(PCBX7)
