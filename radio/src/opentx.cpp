@@ -1103,7 +1103,7 @@ void checkAll()
 
 #if defined(CPUARM)
   if (g_model.displayChecklist && modelHasNotes()) {
-    pushModelNotes();
+    readModelNotes();
   }
 #endif
 
