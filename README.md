@@ -1,3 +1,21 @@
+## Frsky Updating Tool
+
+This repo is a fork of OpenTX that adds a PC-based Frsky receiver flashing tool that
+uses OpenTX's S.Port telemetry algorithms. The main purpose of this tool is to provide
+a way to flash Frsky receivers on Linux (Frsky's proprietary flashing software is only
+available on Windows). This is mainly useful for people who don't have access to an
+Frsky transmitter for flashing.
+
+**Use at your own risk!** This tool has been tested just once to flash an Frsky XM
+receiver. It worked, and didn't brick the receiver! But with only one test I can't
+guarantee the same results for anyone else.
+
+The flashing hardware I used was an FTDI 1232 breakout board, with the jumper set to 5 volts.
+The TX and RX lines must be inverted - to do this, I used https://github.com/eswierk/ft232r_prog.
+Finally, a diode needs to be added to convert the full duplex TX/RX pins to the half duplex
+S.Port pin. See the last page of https://www.multirotorparts.nl/downloads/frsky_smart_port_upgrade.pdf
+for instructions and a schematic.
+
 ## OpenTX 2.2 Branch
 
 [![Travis build Status](https://travis-ci.org/opentx/opentx.svg?branch=2.2)](https://travis-ci.org/opentx/opentx)
