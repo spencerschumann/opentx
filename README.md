@@ -10,11 +10,27 @@ Frsky transmitter for flashing.
 receiver. It worked, and didn't brick the receiver! But with only one test I can't
 guarantee the same results for anyone else.
 
+### Hardware
+
 The flashing hardware I used was an FTDI 1232 breakout board, with the jumper set to 5 volts.
 The TX and RX lines must be inverted - to do this, I used https://github.com/eswierk/ft232r_prog.
 Finally, a diode needs to be added to convert the full duplex TX/RX pins to the half duplex
 S.Port pin. See the last page of https://www.multirotorparts.nl/downloads/frsky_smart_port_upgrade.pdf
 for instructions and a schematic.
+
+### Usage
+
+The tool is in `tools/rx_flash`. In that directory, run `build.sh` to build it. This will produce an
+executable, `rx_flash`. It takes two arguments: first, the serial port device, and second, the file
+to flash. For example:
+
+```bash
+$ ./rx_flash /dev/ttyUSB0 ~/Downloads/XM170323/XMFCC170323_RSSI16.frk
+```
+
+Also note that the receiver only listens for update packets for a short time after powering on.
+Therefore, I powered it separately from the FTDI board so that I could power it up and then
+immediately start the update tool.
 
 ## OpenTX 2.2 Branch
 
